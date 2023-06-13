@@ -6,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<FoodOrderingSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("OrderConnection")));
 
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
