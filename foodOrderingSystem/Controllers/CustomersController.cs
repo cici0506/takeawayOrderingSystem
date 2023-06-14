@@ -20,11 +20,22 @@ namespace foodOrderingSystem.Controllers
         }
 
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            return _context.Customers != null ?
-                        View(await _context.Customers.ToListAsync()) :
-                        Problem("Entity set 'FoodOrderingSystemContext.Customers'  is null.");
+            if (_context.Customers == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var customer = from m in _context.Customers
+                         select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                customer = customer.Where(s => s.FirstName!.Contains(searchString));
+            }
+
+            return View(await customer.ToListAsync());
         }
 
         // GET: Customers/Details/5
