@@ -32,7 +32,7 @@ namespace foodOrderingSystem.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                customer = customer.Where(s => s.FirstName!.Contains(searchString));
+                customer = customer.Where(s => s.LastName!.Contains(searchString));
             }
 
             return View(await customer.ToListAsync());
