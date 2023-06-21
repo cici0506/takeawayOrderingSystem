@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using foodOrderingSystem.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace foodOrderingSystem.Data;
 
-public partial class FoodOrderingSystemContext : DbContext
+public partial class FoodOrderingSystemContext :IdentityDbContext
 {
     public FoodOrderingSystemContext()
     {

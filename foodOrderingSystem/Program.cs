@@ -1,10 +1,15 @@
 using foodOrderingSystem.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<FoodOrderingSystemContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("OrderConnection")));
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<FoodOrderingSystemContext>();
+
 
 
 // Add services to the container.
@@ -26,6 +31,8 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapRazorPages();
 
 app.MapControllerRoute(
     name: "default",
